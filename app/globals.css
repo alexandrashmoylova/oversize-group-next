@@ -3,13 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-sans: 'Gotham Pro', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* set default font CSS variable to Gotham Pro (if available) */
+  --font-sans: 'Gotham Pro', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +23,40 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Gotham Pro local font-face declarations
+   Place your Gotham Pro .woff2/.woff files into `public/fonts/` with names used below.
+   Example filenames: GothamPro-Regular.woff2, GothamPro-Medium.woff2, GothamPro-Bold.woff2
+*/
+@font-face {
+  font-family: 'Gotham Pro';
+  src: url('/fonts/GothamPro-Regular.woff2') format('woff2'),
+       url('/fonts/GothamPro-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham Pro';
+  src: url('/fonts/GothamPro-Medium.woff2') format('woff2'),
+       url('/fonts/GothamPro-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* marquee keyframes used with Tailwind arbitrary animation utility
+   Usage example: className="animate-[marquee_20s_linear_infinite]"
+   Animates transform from translateX(0) to translateX(-50%).
+*/
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
