@@ -67,7 +67,32 @@ const images = [
 
 const SliderGallery: React.FC = () => {
   return (
-    <section className="py-10 bg-gray-200">
+    <section className="relative p-[40px_16px] md:p-[60px_32px] bg-linear-to-l from-transparent via-[#99915a]/20 to-[#99915a]/80 overflow-hidden md:min-h-[520px]">
+      {/* subtle diagonal texture (repeating thin stripes) */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          zIndex: 5,
+          backgroundImage:
+            "repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 12px)",
+        }}
+      />
+
+      {/* soft radial yellow glow */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          zIndex: 4,
+          left: "-6%",
+          top: "30%",
+          width: "24rem",
+          height: "24rem",
+          borderRadius: "9999px",
+          filter: "blur(48px)",
+          background:
+            "radial-gradient(circle at 30% 30%, rgba(255,212,0,0.10), rgba(255,212,0,0.02) 40%, transparent 60%)",
+        }}
+      />
       {/* Заголовок */}
       <h2
         className="
@@ -99,12 +124,12 @@ const SliderGallery: React.FC = () => {
             <SwiperSlide
               key={index}
               className="
-                !w-[90%]
-                sm:!w-[420px]
-                lg:!w-[500px]
+                w-[90%]!
+                sm:w-[420px]!
+                lg:w-[500px]!
               "
             >
-              <div className="relative w-full aspect-[3/2] shadow-md">
+              <div className="relative w-full aspect-3/2 shadow-md">
                 <Image
                   src={img.src}
                   alt={img.alt}

@@ -1,36 +1,25 @@
-import Image from "next/image";
 import { Header } from "./components/header/header";
-import { VideoPlayer } from "./components/videoPlayer/videoPlayer";
-import CallButton from "./components/callButton/callButton";
+import { HeroSection } from "./components/heroSection/heroSection";
 import Description from "./components/description/description";
 import { GalleryList } from "./components/gallery/gallery";
 import TrackingDetails from "./components/trackingDetails/trackingDetails";
 import SliderGallery from "./components/slidesGallery/slidesGallery";
 import { Footer } from "./components/footer/footer";
+import ContactForm from "./components/contactForm/contactForm";
 
 export default function Home() {
   return (
     <>
       <Header />
 
-      {/* video container: position relative so h1 can be absolutely placed over the video */}
-      <div className="relative">
-        <VideoPlayer />
-        <h1 className="absolute top-[60px] left-1/2 -translate-x-1/2 w-100 uppercase text-center text-[#1d1d1b] text-lg md:text-2xl font-bold px-2">
-          Перевозка негабаритных и тяжеловесных грузов
-        </h1>
-        <p className="absolute bottom-[150px] left-1/2 -translate-x-1/2 w-90 uppercase text-center text-white text-md font-bold">
-          Узнайте стоимость перевозки вашего груза
-        </p>
-        <div className="absolute bottom-[100px] left-1/2 -translate-x-1/2">
-          <CallButton />
-        </div>
-      </div>
+      <HeroSection />
 
       <Description />
-      <GalleryList />
-      <TrackingDetails />
+      {/* <GalleryList /> */}
       <SliderGallery />
+
+      <TrackingDetails />
+      <ContactForm />
       <Footer />
 
       {/* Responsive media: video on desktop (md+), image on mobile */}
