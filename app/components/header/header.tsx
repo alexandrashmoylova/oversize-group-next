@@ -42,7 +42,12 @@ export const Header: React.FC = () => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
 
-  const menuItems = ["Автопарк", "Галерея", "Услуги", "Контакты"];
+  const menuItems = [
+    { label: "Автопарк", href: "/avtopark" },
+    { label: "Галерея", href: "#" },
+    { label: "Услуги", href: "/services" },
+    { label: "Контакты", href: "/contacts" },
+  ];
 
   return (
     <>
@@ -60,19 +65,19 @@ export const Header: React.FC = () => {
 
         {/* Десктопное меню */}
         <nav className="hidden md:flex gap-8">
-          {menuItems.map((label) => (
+          {menuItems.map((item) => (
             <a
-              key={label}
-              href="#"
+              key={item.label}
+              href={item.href}
               className="
                 relative text-gray-900 font-medium text-lg
-                before:absolute before:left-0 before:-bottom-1 before:w-0 before:h-[2px]
+                before:absolute before:left-0 before:-bottom-1 before:w-0 before:h-0.5
                 before:bg-yellow-400 before:transition-all before:duration-300
                 hover:before:w-full focus-visible:before:w-full
                 outline-none
               "
             >
-              {label}
+              {item.label}
             </a>
           ))}
         </nav>
@@ -116,7 +121,7 @@ export const Header: React.FC = () => {
       {/* Мобильное меню — slide-in справа */}
       <div
         className={`
-          fixed inset-0 z-[100]
+          fixed inset-0 z-100
           bg-black/40 backdrop-blur-sm
           transition-opacity duration-300
           ${
@@ -137,20 +142,20 @@ export const Header: React.FC = () => {
             flex flex-col p-6 pt-20
           `}
         >
-          {menuItems.map((label) => (
+          {menuItems.map((item) => (
             <a
-              key={label}
-              href="#"
+              key={item.label}
+              href={item.href}
               onClick={() => setOpen(false)}
               className="
                 relative mb-6 text-gray-900 font-medium text-lg
-                before:absolute before:left-0 before:-bottom-1 before:w-0 before:h-[2px]
+                before:absolute before:left-0 before:-bottom-1 before:w-0 before:h-0.5
                 before:bg-yellow-400 before:transition-all before:duration-300
                 hover:before:w-full focus-visible:before:w-full
                 outline-none
               "
             >
-              {label}
+              {item.label}
             </a>
           ))}
         </nav>

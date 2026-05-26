@@ -2,7 +2,6 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PRICE_LIST, ADDITIONAL_LIST } from "./const";
 import Image from "next/image";
 // use public image path directly for background scheme
 const backgroundSchemePath = "/assets/img/background-scheme.png";
@@ -15,27 +14,62 @@ const TrackingDetails: React.FC = () => {
 
   const WHY_US = [
     {
-      icon: PRICE_LIST[0]?.icon ?? null,
+      icon: (
+        <Image
+          src="/assets/svg/truck.svg"
+          alt="Собственный парк техники"
+          width={60}
+          height={60}
+        />
+      ),
       title: "Собственный парк техники",
       desc: "Современные тралы и опытная бригада для безопасной перевозки крупногабаритных грузов.",
     },
     {
-      icon: PRICE_LIST[1]?.icon ?? null,
+      icon: (
+        <Image
+          src="/assets/svg/document.svg"
+          alt="Гарантии и страхование"
+          width={20}
+          height={20}
+        />
+      ),
       title: "Гарантии и страхование",
       desc: "Полное страхование грузов и официальные договоры — минимизируем ваши риски.",
     },
     {
-      icon: ADDITIONAL_LIST[0]?.icon ?? null,
+      icon: (
+        <Image
+          src="/assets/svg/manager.svg"
+          alt="Персональный менеджер"
+          width={30}
+          height={30}
+        />
+      ),
       title: "Персональный менеджер",
       desc: "Куратор на связи 24/7: переговоры, документация и контроль на каждом этапе.",
     },
     {
-      icon: PRICE_LIST[2]?.icon ?? null,
+      icon: (
+        <Image
+          src="/assets/svg/route.svg"
+          alt="Оптимизация маршрута"
+          width={25}
+          height={25}
+        />
+      ),
       title: "Оптимизация маршрута",
       desc: "Опытные логисты подберут маршрут по критериям скорости и стоимости.",
     },
     {
-      icon: ADDITIONAL_LIST[1]?.icon ?? null,
+      icon: (
+        <Image
+          src="/assets/svg/fast-clock.png"
+          alt="Срочная доставка"
+          width={30}
+          height={30}
+        />
+      ),
       title: "Срочная доставка",
       desc: "Экспресс-решения для случаев, когда время — ключевой фактор.",
     },

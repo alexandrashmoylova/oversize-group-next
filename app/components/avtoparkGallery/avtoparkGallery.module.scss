@@ -1,0 +1,477 @@
+// Local SCSS module - no global imports
+
+.card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 212, 0, 0) 0%, rgba(255, 212, 0, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f0ede8 0%, #e8e3da 100%);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  }
+
+  &:hover img {
+    transform: scale(1.08);
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem;
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1d1d1b;
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease;
+  }
+
+  p {
+    font-size: 0.875rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+}
+
+.specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #e8e3da;
+
+  // Spec item animation on hover
+  & > div {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateX(4px);
+    }
+
+    // Yellow dot
+    & > div:first-child {
+      width: 0.5rem;
+      height: 0.5rem;
+      background: #FFD400;
+      border-radius: 9999px;
+      flex-shrink: 0;
+      margin-top: 0.375rem;
+      box-shadow: 0 0 8px rgba(255, 212, 0, 0.3);
+    }
+
+    // Spec text
+    span {
+      font-size: 0.875rem;
+      color: #555;
+      transition: color 0.3s ease;
+    }
+
+    &:hover span {
+      color: #1d1d1b;
+    }
+  }
+}
+
+.button {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #FFD400 0%, #ffeb66 100%);
+  color: #1d1d1b;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s ease;
+  }
+
+  &:hover {
+    box-shadow: 0 8px 20px rgba(255, 212, 0, 0.25);
+    transform: translateY(-2px);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .card {
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
+
+  .imageContainer {
+    height: 12rem;
+  }
+
+  .content {
+    padding: 1rem;
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+// Animation for cards
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.card {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+// ============================================
+// MODAL STYLES
+// ============================================
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.modalContent {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  max-width: 800px;
+  width: 95%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgba(255, 212, 0, 0.9);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #1d1d1b;
+  font-weight: bold;
+
+  &:hover {
+    background: #FFD400;
+    transform: scale(1.1) rotate(90deg);
+  }
+}
+
+.modalInner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+
+.modalImageSection {
+  position: relative;
+  height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f0ede8 0%, #e8e3da 100%);
+
+  @media (max-width: 768px) {
+    height: 300px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.modalImageSectionFullscreen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 70vh;
+  background: #1d1d1b;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.modalInfoSection {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+}
+
+.modalTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1d1d1b;
+  margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+
+.modalDescription {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.specsGrid {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.specSection {
+  h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1d1d1b;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.5;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.specIcon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: linear-gradient(135deg, #FFD400 0%, #ffeb66 100%);
+  color: #1d1d1b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-top: 0.125rem;
+}
+
+.modalActions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.modalContactBtn {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #FFD400 0%, #ffeb66 100%);
+  color: #1d1d1b;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 212, 0, 0.2);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 212, 0, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    flex: auto;
+  }
+}
+
+.modalCloseBtn {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  background: #f0f0f0;
+  color: #1d1d1b;
+  border: 2px solid #e8e3da;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #e8e3da;
+    border-color: #d0c9b8;
+  }
+
+  @media (max-width: 768px) {
+    flex: auto;
+  }
+}
+
+// Scrollbar styling for modal
+.modalContent {
+  scrollbar-width: thin;
+  scrollbar-color: #FFD400 #f5f5f5;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f5f5f5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #FFD400;
+    border-radius: 4px;
+
+    &:hover {
+      background: #ffeb66;
+    }
+  }
+}
