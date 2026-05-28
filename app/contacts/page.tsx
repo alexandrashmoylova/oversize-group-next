@@ -70,7 +70,7 @@ export default function ContactsPage() {
 
           <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1d1d1b] mb-4 animate-fade-in-down">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-fade-in-down">
                 Свяжитесь с нами
               </h2>
               <div
@@ -78,7 +78,7 @@ export default function ContactsPage() {
                 style={{ animationDelay: "0.2s" }}
               />
               <p
-                className="text-lg text-[#3b3b3a] max-w-2xl mx-auto animate-fade-in-up"
+                className="text-lg text-[#d0c9b8] max-w-2xl mx-auto animate-fade-in-up"
                 style={{ animationDelay: "0.2s" }}
               >
                 Заполните форму ниже, и мы свяжемся с вами в течение 24 часов
@@ -295,11 +295,7 @@ function ContactForm() {
         )}
 
         {/* Submit Button */}
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-[#FFD400] hover:bg-[#edb200] disabled:bg-gray-400 text-[#1d1d1b] font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
-        >
+        <button type="submit" disabled={loading} className="w-full btn-primary">
           {loading ? "Отправка..." : "Отправить сообщение"}
         </button>
       </div>

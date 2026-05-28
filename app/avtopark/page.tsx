@@ -1,12 +1,20 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Header } from "../components/header/header";
 import { Footer } from "../components/footer/footer";
+import ContactModal from "../components/contactModal/contactModal";
 import AvtoparkGallery from "../components/avtoparkGallery/avtoparkGallery";
 
 const AvtoparkPage: React.FC = () => {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   return (
     <>
       <Header />
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
       <main className="w-full">
         {/* Hero Section with Background */}
         <section className="relative w-full pt-32 pb-24 overflow-hidden bg-linear-to-b from-[#1d1d1b] via-[#2a2a27] to-[#1d1d1b]">
@@ -100,13 +108,13 @@ const AvtoparkPage: React.FC = () => {
               Свяжитесь с нашей командой для консультации и расчета стоимости
               доставки
             </p>
-            <a
-              href="#contact"
+            <button
+              onClick={() => setIsContactModalOpen(true)}
               className="inline-block px-8 py-4 bg-linear-to-r from-[#FFD400] to-[#ffeb66] text-[#1d1d1b] font-semibold rounded-lg hover:shadow-lg hover:shadow-[#FFD400]/30 transition-all duration-300 transform hover:scale-105 animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
               Получить расчет
-            </a>
+            </button>
           </div>
         </section>
       </main>

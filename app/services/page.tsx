@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Header } from "@/app/components/header/header";
 import { Footer } from "@/app/components/footer/footer";
+import ContactModal from "@/app/components/contactModal/contactModal";
 import Image from "next/image";
 
 type ServiceType = {
@@ -100,9 +103,15 @@ const services: ServiceType[] = [
 ];
 
 export default function ServicesPage() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
     <>
       <Header />
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
       <main className="w-full">
         {/* Hero Section */}
         <section className="relative w-full pt-32 pb-24 overflow-hidden bg-linear-to-b from-[#1d1d1b] via-[#2a2a27] to-[#1d1d1b]">
@@ -163,7 +172,7 @@ export default function ServicesPage() {
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1d1d1b] mb-4 animate-fade-in-down">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-fade-in-down">
                 Полный спектр услуг
               </h2>
               <div
@@ -171,7 +180,7 @@ export default function ServicesPage() {
                 style={{ animationDelay: "0.2s" }}
               />
               <p
-                className="text-lg text-[#3b3b3a] max-w-2xl mx-auto animate-fade-in-up"
+                className="text-lg text-[#d0c9b8] max-w-2xl mx-auto animate-fade-in-up"
                 style={{ animationDelay: "0.2s" }}
               >
                 Специализированные решения для любых типов грузов и задач
@@ -255,13 +264,13 @@ export default function ServicesPage() {
               Свяжитесь с нашей командой для консультации и расчета стоимости
               услуг
             </p>
-            <a
-              href="#contact"
+            <button
+              onClick={() => setIsContactModalOpen(true)}
               className="inline-block px-8 py-4 bg-linear-to-r from-[#FFD400] to-[#ffeb66] text-[#1d1d1b] font-semibold rounded-lg hover:shadow-lg hover:shadow-[#FFD400]/30 transition-all duration-300 transform hover:scale-105 animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
               Получить консультацию
-            </a>
+            </button>
           </div>
         </section>
 
@@ -305,9 +314,7 @@ function ServiceCard({ service }: { service: ServiceType }) {
         </div>
 
         {/* Button */}
-        <button className="w-full bg-[#FFD400] hover:bg-[#edb200] text-[#1d1d1b] font-semibold py-2 px-4 rounded transition-colors">
-          Узнать подробнее
-        </button>
+        <button className="w-full btn-primary">Узнать подробнее</button>
       </div>
     </div>
   );

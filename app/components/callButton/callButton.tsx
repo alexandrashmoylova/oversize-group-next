@@ -10,7 +10,7 @@ const CallButton: React.FC<CallButtonProps> = ({ isGallery }) => {
   return (
     <a
       href="tel:+79297133700"
-      className="inline-block w-50 text-center uppercase bg-[#FCEE21] text-black font-semibold px-4 py-2 hover:brightness-95 transition"
+      className="inline-block btn-primary"
       aria-label="Позвонить"
       title="Позвонить"
     >

@@ -47,9 +47,7 @@ export default function Description() {
             Быстро. Надёжно. По всему миру.
           </p>
           <div className="mt-6">
-            <a className="inline-block bg-[#FFD400] text-black font-semibold px-6 py-3 cursor-pointer rounded-md shadow-md">
-              Узнать стоимость
-            </a>
+            <button className="btn-primary">Узнать стоимость</button>
           </div>
         </div>
         {/* <TrucksIllustration /> */}

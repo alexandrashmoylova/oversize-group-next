@@ -44,7 +44,7 @@ export const Header: React.FC = () => {
 
   const menuItems = [
     { label: "Автопарк", href: "/avtopark" },
-    { label: "Галерея", href: "#" },
+    { label: "Галерея", href: "/gallery" },
     { label: "Услуги", href: "/services" },
     { label: "Контакты", href: "/contacts" },
   ];
